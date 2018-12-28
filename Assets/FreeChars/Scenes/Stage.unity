@@ -951,10 +951,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golem (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 275418179, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
@@ -969,22 +973,22 @@ PrefabInstance:
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
@@ -999,18 +1003,50 @@ PrefabInstance:
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 275418180, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 275418180, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3eddb1b654bcab241924e371a0261064, type: 2}
+    - target: {fileID: 275418180, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed by
+        Humanoid clips.\n\tTransform 'joint1'\n\tTransform 'Index_Proximal_L'\n\tTransform
+        'Index_Proximal_R'\n\tTransform 'joint1'\n\tTransform 'Index_Proximal_L'\n\tTransform
+        'Index_Proximal_R'\n\tTransform 'joint1'\n\tFrom animation clip 'Attack01'\n\tFrom
+        animation clip 'Attack02'\n\tFrom animation clip 'Idle'\n\tFrom animation
+        clip 'GetHit'\n\tFrom animation clip 'Victory'\n\tFrom animation clip 'Walk'\n\tFrom
+        animation clip 'Die'\n\tFrom animation clip 'Push'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 275418181, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 275418182, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6814411852030029070, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2205b89f99eb1a247abd5acd24e01a87, type: 2}
+    - target: {fileID: 8514050009352501831, guid: 17087db27ea11914eb15cbcc2122c993,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
 --- !u!1 &534669902
@@ -1088,13 +1124,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 3.05, z: 8.69}
+  m_LocalRotation: {x: -0, y: 0.9231263, z: -0.3844968, w: 0}
+  m_LocalPosition: {x: 0.11, y: 6.39, z: 4.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 45.225002, y: 180.00002, z: 0}
 --- !u!1 &553797324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,10 +1580,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golem
       objectReference: {fileID: 0}
+    - target: {fileID: 275418179, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
@@ -1562,22 +1602,22 @@ PrefabInstance:
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
@@ -1592,18 +1632,67 @@ PrefabInstance:
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 6814411852032850946, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 275418180, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3eddb1b654bcab241924e371a0261064, type: 2}
+    - target: {fileID: 275418180, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed by
+        Humanoid clips.\n\tTransform 'joint1'\n\tTransform 'Index_Proximal_L'\n\tTransform
+        'Index_Proximal_R'\n\tTransform 'joint1'\n\tTransform 'Index_Proximal_L'\n\tTransform
+        'Index_Proximal_R'\n\tTransform 'joint1'\n\tFrom animation clip 'Attack01'\n\tFrom
+        animation clip 'Attack02'\n\tFrom animation clip 'Idle'\n\tFrom animation
+        clip 'GetHit'\n\tFrom animation clip 'Victory'\n\tFrom animation clip 'Walk'\n\tFrom
+        animation clip 'Die'\n\tFrom animation clip 'Push'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 275418181, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6814411852030029070, guid: 17087db27ea11914eb15cbcc2122c993,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 49fa862ac990cee4ca8fac046fe657f9, type: 2}
+    - target: {fileID: 6814411852032850980, guid: 17087db27ea11914eb15cbcc2122c993,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.1448515
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814411852032850980, guid: 17087db27ea11914eb15cbcc2122c993,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.40157503
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514050009352501831, guid: 17087db27ea11914eb15cbcc2122c993,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514050009352501831, guid: 17087db27ea11914eb15cbcc2122c993,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514050009352501831, guid: 17087db27ea11914eb15cbcc2122c993,
+        type: 3}
+      propertyPath: m_CookingOptions
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3023951259235237258, guid: 17087db27ea11914eb15cbcc2122c993,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17087db27ea11914eb15cbcc2122c993, type: 3}
 --- !u!1 &1299630124
