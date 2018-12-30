@@ -12,6 +12,8 @@ public class SimpleController : MonoBehaviour {
     public Transform targetTransform;
     public Transform platformTransform;
 
+    public int playernumber;
+
     [SerializeField] private float m_moveSpeed = 2;
     [SerializeField] private float m_turnSpeed = 200;
     [SerializeField] private float m_jumpForce = 4;
@@ -19,6 +21,10 @@ public class SimpleController : MonoBehaviour {
     [SerializeField] private Rigidbody m_rigidBody;
 
     [SerializeField] private ControlMode m_controlMode = ControlMode.Direct;
+
+    public float horizKickScale = 1.0f;
+    public float vertKickScale = 1.0f;
+    public float proximityAlert = 3.0f;
 
     private float m_currentV = 0;
     private float m_currentH = 0;
@@ -94,30 +100,59 @@ public class SimpleController : MonoBehaviour {
     }
 
 	void Update () {
-        m_animator.SetBool("Grounded", m_isGrounded);
+        //m_animator.SetBool("Grounded", m_isGrounded);
 
-        switch(m_controlMode)
+        if (!m_hasLost && !(m_hasWon))
         {
-            case ControlMode.Direct:
-                DirectUpdate();
-                break;
+            switch (m_controlMode)
+            {
+                case ControlMode.Direct:
+                    DirectUpdate();
+                    break;
 
-            case ControlMode.Tank:
-                TankUpdate();
-                break;
+                case ControlMode.Tank:
+                    TankUpdate();
+                    break;
 
-            default:
-                Debug.LogError("Unsupported state");
-                break;
+                default:
+                    Debug.LogError("Unsupported state");
+                    break;
+            }
         }
-
         m_wasGrounded = m_isGrounded;
 
         if (fallCheck()) { lose(); }
     }
 
-    private void lose()
+    private void kickOffPlatform(int axis)
     {
+        if (axis == 0)
+        {
+            if (transform.position.x < 0.0)
+            {
+                m_rigidBody.AddForce(((Vector3.left * horizKickScale) + (Vector3.up * vertKickScale)) * m_jumpForce / 16.0f, ForceMode.Impulse);
+            }
+            else
+            {
+                m_rigidBody.AddForce(((Vector3.right * horizKickScale) + (Vector3.up * vertKickScale)) * m_jumpForce / 16.0f, ForceMode.Impulse);
+            }
+        }
+
+        if (axis == 1)
+        {
+            if (transform.position.z < 0.0)
+            {
+                m_rigidBody.AddForce(((Vector3.back * horizKickScale) + (Vector3.up * vertKickScale)) * m_jumpForce / 16.0f, ForceMode.Impulse);
+            }
+            else
+            {
+                m_rigidBody.AddForce(((Vector3.forward * horizKickScale) + (Vector3.up * vertKickScale)) * m_jumpForce / 16.0f, ForceMode.Impulse);
+            }
+        }
+    }
+
+    private void lose()
+    { 
         m_hasLost = true;
         //send message here to other golem's victory check
         targetTransform.GetComponent<SimpleController>().win();
@@ -129,6 +164,13 @@ public class SimpleController : MonoBehaviour {
     {
         m_hasWon = true;
         // need victory animation
+        Transform camera = Camera.main.transform;
+        //Quaternion faceCamera = new Quaternion(transform.rotation.x, camera.rotation.y, transform.rotation.z, 1.0f);
+        //transform.rotation = faceCamera;
+        var fwd = Camera.main.transform.forward * -1.0f;
+        //fwd.y = 0.0f;
+        transform.rotation = Quaternion.LookRotation(fwd);
+
         transform.GetComponent<Animator>().SetBool("hasWon", true);
     }
 
@@ -136,26 +178,12 @@ public class SimpleController : MonoBehaviour {
     {
         if (Mathf.Abs(transform.position.x) > (platformTransform.localScale.x / 2.0f))
         {
-            if(transform.position.x < 0.0)
-            {
-                m_rigidBody.AddForce( (Vector3.left + (Vector3.up * 0.1f)) * m_jumpForce / 16.0f, ForceMode.Impulse);
-            }
-            else
-            {
-                    m_rigidBody.AddForce( (Vector3.right + (Vector3.up * 0.1f)) * m_jumpForce / 16.0f, ForceMode.Impulse);
-            }
+            kickOffPlatform(0);
             return true;
         }
         if (Mathf.Abs(transform.position.z) > (platformTransform.localScale.z / 2.0f))
         {
-            if (transform.position.z < 0.0)
-            {
-                m_rigidBody.AddForce( (Vector3.forward + (Vector3.up * 0.1f)) * m_jumpForce / 16.0f, ForceMode.Impulse);
-            }
-            else
-            {
-                m_rigidBody.AddForce( (Vector3.back + (Vector3.up * 0.1f)) * m_jumpForce / 16.0f, ForceMode.Impulse);
-            }
+            kickOffPlatform(1);
             return true;
         }
 
@@ -165,10 +193,25 @@ public class SimpleController : MonoBehaviour {
 
     private void TankUpdate()
     {
-        float v = Input.GetAxis("Vertical");
-        float h = Input.GetAxis("Horizontal");
+        float v = 0;
+        float h = 0;
 
-        bool walk = Input.GetKey(KeyCode.LeftShift);
+        if (playernumber == 1)
+        {
+            v = Input.GetAxis("Vertical");
+            h = Input.GetAxis("Horizontal");
+        }
+        else if (playernumber == 2)
+        {
+            v = Input.GetAxis("VerticalP2");
+            h = Input.GetAxis("HorizontalP2");
+        }
+        else
+        {
+            Debug.Log("Player Number is invalid");
+        }
+
+        bool walk = false;// Input.GetKey(KeyCode.LeftShift);
 
         if (v < 0) {
             if (walk) { v *= m_backwardsWalkScale; }
@@ -191,8 +234,27 @@ public class SimpleController : MonoBehaviour {
 
     private void DirectUpdate()
     {
-        float v = Input.GetAxis("Vertical");
-        float h = Input.GetAxis("Horizontal");
+
+        float v = 0;
+        float h = 0;
+
+        if (playernumber == 1)
+        {
+            v = Input.GetAxis("Vertical");
+            h = Input.GetAxis("Horizontal");
+        }
+        else if (playernumber == 2)
+        {
+            v = Input.GetAxis("VerticalP2");
+            h = Input.GetAxis("HorizontalP2");
+        }
+        else
+        {
+            Debug.Log("Player Number is invalid");
+        }
+
+        if (v == 0.0f && h == 0.0f) { m_animator.SetBool("Walking", false); }
+        else { m_animator.SetBool("Walking", true); }
 
         Transform camera = Camera.main.transform;
 
@@ -217,8 +279,20 @@ public class SimpleController : MonoBehaviour {
 
             transform.rotation = Quaternion.LookRotation(m_currentDirection);
             transform.position += m_currentDirection * m_moveSpeed * Time.deltaTime;
+            //m_animator.SetFloat("MoveSpeed", direction.magnitude);
+            if (Vector3.Distance(targetTransform.transform.position, transform.position) < proximityAlert){
+                m_animator.SetBool("Pushing", true);
+            }
+            else
+            {
+                m_animator.SetBool("Pushing", false);
+            }
 
-            m_animator.SetFloat("MoveSpeed", direction.magnitude);
+        }
+        else
+        {
+            m_animator.SetBool("Walking", false);
+            m_animator.SetBool("Pushing", false);
         }
 
         JumpingAndLanding();
@@ -228,7 +302,22 @@ public class SimpleController : MonoBehaviour {
     {
         bool jumpCooldownOver = (Time.time - m_jumpTimeStamp) >= m_minJumpInterval;
 
-        if (jumpCooldownOver && m_isGrounded && Input.GetKey(KeyCode.Space))
+        bool isJumping = false;
+
+        if (playernumber == 1)
+        {
+            if (Input.GetKey(KeyCode.Space)) { isJumping = true; }
+        }
+        else if (playernumber == 2)
+        {
+            if (Input.GetKey(KeyCode.RightShift)) { isJumping = true; }
+        }
+        else
+        {
+            Debug.Log("Player Number is invalid (JumpingAndLanding)");
+        }
+
+        if (jumpCooldownOver && m_isGrounded && isJumping/*Input.GetKey(KeyCode.Space)*/)
         {
             m_jumpTimeStamp = Time.time;
             m_rigidBody.AddForce(Vector3.up * m_jumpForce, ForceMode.Impulse);

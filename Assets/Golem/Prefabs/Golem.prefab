@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 275418183}
   - component: {fileID: 275418181}
   - component: {fileID: 275418182}
+  - component: {fileID: 2431529384946417215}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Untagged
@@ -64,7 +65,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275418179}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 5
   m_UseGravity: 1
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275418179}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32ca30c36b506c64aafa127f12f968fa, type: 3}
   m_Name: 
@@ -104,6 +105,29 @@ MonoBehaviour:
   m_animator: {fileID: 275418180}
   m_rigidBody: {fileID: 275418183}
   m_controlMode: 1
+--- !u!114 &2431529384946417215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275418179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6698f6af5ee374a8b30a9ccfa27d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  platformTransform: {fileID: 0}
+  m_moveSpeed: 2
+  m_turnSpeed: 200
+  m_jumpForce: 4
+  m_animator: {fileID: 275418180}
+  m_rigidBody: {fileID: 275418183}
+  m_controlMode: 1
+  horizKickScale: 50
+  vertKickScale: 50
+  proximityAlert: 3
 --- !u!1 &6814411852033204224
 GameObject:
   m_ObjectHideFlags: 0
